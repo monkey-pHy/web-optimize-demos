@@ -1,0 +1,133 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: pengheyan
+ * @Date: 2020-12-21 14:14:47
+ * @LastEditors: pengheyan
+ * @LastEditTime: 2020-12-21 17:01:41
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片懒加载</title>
+  <style>
+    .image-wrapper {
+      width: 100%;
+      height: 600px;
+      position: relative;
+      overflow: auto;
+    }
+
+    img {
+      width: 400px;
+      height: 200px;
+      display: block;
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="image-wrapper" id="wraper">
+    <img src="./image/default.png" alt="" data-src="./image/1.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/2.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/3.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/4.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/5.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/6.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/7.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/8.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/9.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/10.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/11.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/12.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/13.jpg">
+    <img src="./image/default.png" alt="" data-src="./image/14.jpg">
+  </div>
+</body>
+<script src="./lazyLoad.js"></script>
+<script>
+  let lazy = new LazyLoad('img[data-src]');
+
+  
+  // function lazyLoad() {
+  //   const imgs = document.querySelectorAll('img[data-src]');
+  //   const config = {
+  //     rootMargin: '0px',
+  //     threshold: 0
+  //   };
+  //   if ("IntersectionObserver" in window) {
+  //     let observer = new IntersectionObserver((entries, self) => {
+  //       entries.forEach(entry => {
+  //         // time：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒
+  //         // target：被观察的目标元素，是一个 DOM 节点对象
+  //         // isIntersecting: 目标是否可见
+  //         // rootBounds：根元素的矩形区域的信息，getBoundingClientRect()方法的返回值，如果没有根元素（即直接相对于视口滚动），则返回 null
+  //         // boundingClientRect：目标元素的矩形区域的信息
+  //         // intersectionRect：目标元素与视口（或根元素）的交叉区域的信息
+  //         // intersectionRatio：目标元素的可见比例，即 intersectionRect 占 boundingClientRect 的比例，完全可见时为 1，完全不可见时小于等于 0
+  //         if (entry.isIntersecting) {
+  //           let img = entry.target;
+  //           let src = img.dataset.src;
+  //           if (src) {
+  //             img.src = src;
+  //             img.removeAttribute('data-src');
+  //           }
+  //           self.unobserve(entry.target)
+  //         }
+  //       })
+  //     }, config);
+
+  //     imgs.forEach(image => {
+  //       observer.observe(image);
+  //     });
+
+  //   } else {
+  //     const viewHeight = document.getElementById('wraper').clientHeight;
+  //     imgs.forEach((item, index) => {
+  //       if (item.dataset.src == "") return;
+  //       let rect = item.getBoundingClientRect(); //获取页面中某个元素的左、上、右和下分别相对浏览器视窗的位置
+  //       console.log('tag', item.offsetTop);
+  //       if (rect.top >= 0 && rect.bottom < viewHeight) {
+  //         console.log('item.dataset', item);
+  //         item.src = item.dataset.src;
+  //         item.removeAttribute('data-src');
+  //       }
+  //     })
+  //   }
+  // }
+
+  // lazyLoad() //没滚动屏幕时,要先触发一次函数初始化图片
+
+  // document.getElementById('wraper').addEventListener("scroll", throttle(lazyLoad, 200))
+
+  // function throttle(fn, delay) {
+  //   let timers;
+  //   let prevTime;
+  //   return function (...args) {
+  //     const currentTime = Date.now();
+  //     const context = this;
+
+  //     if (!prevTime) prevTime = currentTime
+  //     clearTimeout(timers)
+
+  //     if (currentTime - prevTime > delay) {
+  //       prevTime = currentTime;
+  //       fn.apply(context, args);
+  //       clearTimeout(timers);
+  //       return
+  //     }
+
+  //     timers = setTimeout(() => {
+  //       prevTime = Date.now();
+  //       timers = null;
+  //       fn.apply(context, args);
+  //     }, delay);
+  //   }
+  // }
+</script>
+
+</html>
